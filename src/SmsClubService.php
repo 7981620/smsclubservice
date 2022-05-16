@@ -39,6 +39,7 @@ class SmsClubService
     public function getAlphaNames(): mixed
     {
         $request = Http::retry($this->httpRetry, $this->httpRetryPause)
+            ->withoutVerifying()
             ->withToken($this->token)
             ->acceptJson()
             ->post('https://im.smsclub.mobi/sms/originator');
@@ -70,6 +71,7 @@ class SmsClubService
         }
 
         $request = Http::retry($this->httpRetry, $this->httpRetryPause)
+            ->withoutVerifying()
             ->asForm()
             ->withToken($this->token)
             ->acceptJson()
@@ -92,6 +94,7 @@ class SmsClubService
     public function getBalance(): float|bool
     {
         $request = Http::retry($this->httpRetry, $this->httpRetryPause)
+            ->withoutVerifying()
             ->withToken($this->token)
             ->acceptJson()
             ->post('https://im.smsclub.mobi/sms/balance');
